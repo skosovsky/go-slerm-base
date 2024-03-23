@@ -28,6 +28,6 @@ func factorialRecursive(num int) int {
 
 func limitRecursive() {
 	for {
-		limitRecursive()
+		limitRecursive() //nolint: staticcheck
 	}
 }

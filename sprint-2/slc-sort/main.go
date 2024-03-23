@@ -113,7 +113,7 @@ func sortReturn(slc []int) []int {
 			}
 		}
 
-		for range countNum {
+		for range countNum { //nolint:typecheck
 			sortedSlc = append(sortedSlc, i)
 		}
 
