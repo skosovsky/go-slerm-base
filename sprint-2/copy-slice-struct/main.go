@@ -34,9 +34,12 @@ func main() {
 }
 
 func copySlc(slc []House) []House {
-	// TODO переделать функцию, чтобы пересоздавала вручную все сущности
-	newSlc := make([]House, len(slc))
-	copy(newSlc, slc)
+	var newSlc []House
+	for _, v := range slc {
+		newPtr := *v.ptr
+		newHouse := House{v.name, &newPtr}
+		newSlc = append(newSlc, newHouse)
+	}
 
 	return newSlc
 }
