@@ -61,7 +61,7 @@ func mutexLock() {
 		value: 0,
 	}
 
-	for range 100 {
+	for range 100 { //nolint:typecheck // it's ok for 1.22
 		wg.Add(1)
 		go counter.Update(10, &wg) //nolint:gomnd // it's learning code
 	}
@@ -95,7 +95,7 @@ func mutexRWLock() {
 		value: 0,
 	}
 
-	for range 100 {
+	for range 100 { //nolint:typecheck // it's ok for 1.22
 		wg.Add(1)
 		go counter.Update(10, &wg) //nolint:gomnd // it's learning code
 	}

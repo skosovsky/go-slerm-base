@@ -56,7 +56,7 @@ func main() {
 	close(c)
 
 	// Receive from a closed channel returns the zero value.
-	for range 5 {
+	for range 5 { //nolint:typecheck // it's ok for 1.22
 		v, ok := <-c
 		fmt.Printf("open?: %v, value %d\n", ok, v) //nolint:forbidigo // it's learning code
 		// open?: true, value 20

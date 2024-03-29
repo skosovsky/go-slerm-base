@@ -41,11 +41,9 @@ func fanIn(inputs ...<-chan int) <-chan int {
 	for _, input := range inputs {
 		go func(ch <-chan int) {
 			defer wg.Done()
-
 			for value := range ch {
 				out <- value
 			}
-
 		}(input)
 	}
 
@@ -80,7 +78,7 @@ func square(in <-chan int) <-chan int {
 		defer close(out)
 
 		for i := range in {
-			value := math.Pow(float64(i), 2)
+			value := math.Pow(float64(i), 2) //nolint:gomnd // it's learning code
 			out <- int(value)
 		}
 	}()
@@ -88,11 +86,33 @@ func square(in <-chan int) <-chan int {
 	return out
 }
 
+func worker(id int, jobs <-chan int, results chan<- int) {
+	var wg sync.WaitGroup
+
+	for job := range jobs {
+		wg.Add(1)
+
+		go func(job int) {
+			defer wg.Done()
+
+			fmt.Printf("Worker %d started job %d\n\n", id, job) //nolint:forbidigo // it's learning code
+
+			// Do work and send results
+			result := job * job
+			results <- result
+
+			fmt.Printf("Worker %d finished job %d", id, job) //nolint:forbidigo // it's learning code
+		}(job)
+	}
+
+	wg.Wait()
+}
+
 func main() {
 	//  generator
 	ch := generator()
 
-	for range 5 {
+	for range 5 { //nolint:typecheck // it's ok for 1.22
 		value := <-ch
 		fmt.Println("generator value:", value) //nolint:forbidigo // it's learning code
 	}
@@ -117,5 +137,22 @@ func main() {
 	}
 
 	// worker pool
-	// TODO: продолжить
+	const totalJobs = 10
+	const totalWorkers = 5
+	jobs := make(chan int, totalJobs)
+	results := make(chan int, totalJobs)
+
+	for w := 1; w <= totalWorkers; w++ { // prepare workers
+		go worker(w, jobs, results)
+	}
+
+	for j := 1; j <= totalJobs; j++ { // send jobs
+		jobs <- j
+	}
+	close(jobs)
+
+	for a := 1; a <= totalJobs; a++ { // receive results
+		<-results
+	}
+	close(results)
 }
