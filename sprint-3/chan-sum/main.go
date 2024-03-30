@@ -38,10 +38,11 @@ func sumChannels(inputs []chan int64) int64 {
 }
 
 func main() {
-	var chs []chan int64
+	countChan := 1000
+	chs := make([]chan int64, 0, countChan)
 
 	for range 100 {
-		var ch = make(chan int64, 1000)
+		var ch = make(chan int64, countChan)
 		for num := range 1000 {
 			ch <- int64(num)
 		}
@@ -50,5 +51,18 @@ func main() {
 	}
 
 	result := sumChannels(chs)
-	fmt.Println(result)
+	fmt.Println(result) //nolint:forbidigo // it's learning code
+
+	// check fix input in 1.22
+	if false {
+		inputs := [][]int{{1, 1, 1}, {2, 2, 2}, {3, 3, 3}, {4, 4, 4}, {5, 5, 5}}
+		for _, input := range inputs {
+			var sum int
+			go func() {
+				for _, num := range input {
+					sum += num
+				}
+			}()
+		}
+	}
 }
