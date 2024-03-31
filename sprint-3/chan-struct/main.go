@@ -19,7 +19,7 @@ func small() {
 	startTime = time.Now()
 	wg.Add(1)
 	go func() {
-		wg.Done()
+		defer wg.Done()
 		for range 10000000 {
 			ch <- smallStruct{value: 1000}
 			ch <- smallStruct{value: -1000}

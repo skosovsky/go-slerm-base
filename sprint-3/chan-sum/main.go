@@ -54,15 +54,20 @@ func main() {
 	fmt.Println(result) //nolint:forbidigo // it's learning code
 
 	// check fix input in 1.22
-	if false {
-		inputs := [][]int{{1, 1, 1}, {2, 2, 2}, {3, 3, 3}, {4, 4, 4}, {5, 5, 5}}
-		for _, input := range inputs {
-			var sum int
-			go func() {
-				for _, num := range input {
-					sum += num
-				}
-			}()
-		}
+	inputs := [][]int{{1, 1, 1}, {2, 2, 2}, {3, 3, 3}, {4, 4, 4}, {5, 5, 5}}
+	var sumAll int
+	var wg sync.WaitGroup
+	for _, input := range inputs {
+		var sum int
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for _, num := range input { // it's fix in 1.22
+				sum += num
+			}
+			sumAll += sum
+		}()
 	}
+	wg.Wait()
+	fmt.Println(sumAll) //nolint:forbidigo // it's learning code
 }
