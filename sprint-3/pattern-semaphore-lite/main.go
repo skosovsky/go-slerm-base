@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"time"
 )
 
@@ -24,15 +24,17 @@ func (s Semaphore) Release(n int) {
 }
 
 func main() {
-	sem := NewSemaphore(10) //nolint:gomnd // it's learning code
+	sem := NewSemaphore(3) //nolint:gomnd // it's learning code
 
-	for i := 0; i < 20; i++ {
+	for i := range 20 {
+
 		go func() {
 			sem.Acquire(1)
 			defer sem.Release(1)
-			fmt.Println(i) //nolint:forbidigo // it's learning code
+			time.Sleep(1 * time.Second)
+			log.Println(i)
 		}()
 	}
 
-	time.Sleep(time.Second)
+	time.Sleep(15 * time.Second)
 }

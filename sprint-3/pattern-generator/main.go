@@ -17,12 +17,10 @@ func generator() <-chan int {
 }
 
 func main() {
-	//  generator
 	ch := generator()
 
-	for range 5 { //nolint:typecheck // it's ok for 1.22
+	for range 5 {
 		value := <-ch
 		fmt.Println("generator value:", value) //nolint:forbidigo // it's learning code
 	}
-
 }

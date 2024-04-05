@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"time"
 )
 
@@ -17,6 +18,16 @@ func sendToChannelOnly(arg string, ch chan<- string) {
 func receiveFromChannelOnly(ch <-chan string) {
 	// ch <- "test" // Invalid operation: ch <- "test" (send to the receive-only type <-chan string)
 	fmt.Println(<-ch) //nolint:forbidigo // it's learning code
+}
+
+func blockedChan() {
+	ch := make(chan int)
+
+	go func() {
+		ch <- 42
+	}()
+
+	log.Println(<-ch)
 }
 
 func main() {
@@ -56,7 +67,7 @@ func main() {
 	close(c)
 
 	// Receive from a closed channel returns the zero value.
-	for range 5 { //nolint:typecheck // it's ok for 1.22
+	for range 5 {
 		v, ok := <-c
 		fmt.Printf("open?: %v, value %d\n", ok, v) //nolint:forbidigo // it's learning code
 		// open?: true, value 20
@@ -83,4 +94,6 @@ func main() {
 	go sendToChannelOnly("test", c3)
 
 	time.Sleep(time.Duration(1) * time.Second) // it's for goroutine
+
+	blockedChan()
 }
