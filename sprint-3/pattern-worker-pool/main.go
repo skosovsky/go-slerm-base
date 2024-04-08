@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"sync"
+	"time"
 )
 
 func worker(id int, jobs <-chan int, results chan<- int) {
@@ -38,13 +39,14 @@ func main() {
 		go worker(w, jobs, results)
 	}
 
-	for j := 1; j <= totalJobs; j++ { // send jobs
+	for j := range totalJobs { // send jobs
 		jobs <- j
 	}
 	close(jobs)
 
-	for a := 1; a <= totalJobs; a++ { // receive results
+	for range totalJobs { // receive results
 		<-results
 	}
 	close(results)
+	time.Sleep(time.Second)
 }
