@@ -19,7 +19,7 @@ func nonNilErrorInterface() {
 
 	var err error = typed
 	log.Println(typed == nil) // true
-	if err != nil {
+	if err != nil {           //nolint:staticcheck,govet // it's learning code
 		log.Println(err) // custom err
 	}
 }

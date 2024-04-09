@@ -61,8 +61,8 @@ func main() {
 	}
 
 	// type conversion
-	intVar := string(97)
-	log.Println(intVar) // a
+	intVar := string(97) //nolint:govet // it's learning code
+	log.Println(intVar)  // a
 
 	var int32Var int32 = 100500
 	var int64Var int64 //nolint:gosimple // it's learning code

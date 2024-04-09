@@ -53,6 +53,7 @@ func (s SomeOtherError) Error() string {
 }
 
 func main() {
+	log.Println(divide(10, 10))
 	// log.Println(divide(10,0)) // panic: runtime error, integer divide by zero
 
 	val, err := divide2(10, 0)
