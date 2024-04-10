@@ -27,7 +27,6 @@ func main() {
 	sem := NewSemaphore(3) //nolint:gomnd // it's learning code
 
 	for i := range 20 {
-
 		go func() {
 			sem.Acquire(1)
 			defer sem.Release(1)

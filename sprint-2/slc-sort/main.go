@@ -41,7 +41,6 @@ func main() {
 	sortStandardParam(slc)
 	finish = time.Now()
 	fmt.Println(finish.Sub(start))
-
 }
 
 func sortBubbleInPlace(slc []int) {
@@ -113,10 +112,9 @@ func sortReturn(slc []int) []int {
 			}
 		}
 
-		for range countNum { //nolint:typecheck
+		for range countNum {
 			sortedSlc = append(sortedSlc, i)
 		}
-
 	}
 
 	return sortedSlc

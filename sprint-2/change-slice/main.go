@@ -11,7 +11,6 @@ func main() {
 	slc4 := make([]int, 1, 4)
 	changeSlc(slc4)
 	fmt.Print(slc4)
-
 }
 
 func appendNum(slc []int, nums ...int) []int {

@@ -19,7 +19,7 @@ func selectForChan() {
 		two <- "Two"
 	}()
 
-	for range 2 { //nolint:typecheck // it's ok for 1.22
+	for range 2 {
 		select {
 		case result := <-one:
 			fmt.Println("Received:", result) //nolint:forbidigo // it's learning code

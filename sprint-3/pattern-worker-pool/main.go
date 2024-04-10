@@ -15,13 +15,13 @@ func worker(id int, jobs <-chan int, results chan<- int) {
 		go func(job int) {
 			defer wg.Done()
 
-			log.Printf("Worker %d started job %d\n\n", id, job) //nolint:forbidigo // it's learning code
+			log.Printf("Worker %d started job %d\n\n", id, job)
 
 			// Do work and send results
 			result := job * job
 			results <- result
 
-			log.Printf("Worker %d finished job %d", id, job) //nolint:forbidigo // it's learning code
+			log.Printf("Worker %d finished job %d", id, job)
 		}(job)
 	}
 

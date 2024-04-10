@@ -25,7 +25,6 @@ func (l *LinkedList) append(value int) {
 		lastNode = lastNode.next
 	}
 	lastNode.next = newNode
-
 }
 
 func (l *LinkedList) print() {

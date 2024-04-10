@@ -42,5 +42,4 @@ func main() {
 
 	wg.Wait()
 	log.Printf("Mutex counter: %d\n", counter)
-
 }

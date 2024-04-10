@@ -62,7 +62,6 @@ func customReader() {
 		}
 		log.Print(line)
 	}
-
 }
 
 func main() {

@@ -2,8 +2,9 @@ package main
 
 import (
 	"errors"
-	"github.com/hashicorp/go-multierror"
 	"log"
+
+	"github.com/hashicorp/go-multierror"
 )
 
 var Err1 = errors.New("error 1")

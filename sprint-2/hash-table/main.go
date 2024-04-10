@@ -68,5 +68,4 @@ func main() {
 		fmt.Println("Value not found")
 	}
 	fmt.Println("Value for key", val)
-
 }

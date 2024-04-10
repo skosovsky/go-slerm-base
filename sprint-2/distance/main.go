@@ -28,5 +28,5 @@ func distance(lat1, lon1 float32, lat2, lon2 float32) float32 {
 	return float32(earthRadius * c)
 }
 
-//55.873733, 37.401319
-//55.870035, 37.408641
+// 55.873733, 37.401319
+// 55.870035, 37.408641

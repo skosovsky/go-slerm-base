@@ -51,7 +51,6 @@ func (c *Counter) Update(n int, wg *sync.WaitGroup) {
 	c.m.Lock()
 	defer c.m.Unlock()
 	c.value += n
-
 }
 
 func mutexLock() {
@@ -61,7 +60,7 @@ func mutexLock() {
 		value: 0,
 	}
 
-	for range 100 { //nolint:typecheck // it's ok for 1.22
+	for range 100 {
 		wg.Add(1)
 		go counter.Update(10, &wg) //nolint:gomnd // it's learning code
 	}
@@ -95,7 +94,7 @@ func mutexRWLock() {
 		value: 0,
 	}
 
-	for range 100 { //nolint:typecheck // it's ok for 1.22
+	for range 100 {
 		wg.Add(1)
 		go counter.Update(10, &wg) //nolint:gomnd // it's learning code
 	}

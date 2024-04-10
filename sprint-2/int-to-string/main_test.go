@@ -4,7 +4,7 @@ import "testing"
 
 func BenchmarkItoa(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		for v := range 1000000 { //nolint:typecheck
+		for v := range 1000000 {
 			itoa(v)
 		}
 	}
@@ -12,7 +12,7 @@ func BenchmarkItoa(b *testing.B) {
 
 func BenchmarkSprint(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		for v := range 1000000 { //nolint:typecheck
+		for v := range 1000000 {
 			sprint(v)
 		}
 	}
@@ -20,7 +20,7 @@ func BenchmarkSprint(b *testing.B) {
 
 func BenchmarkItoaPlus(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		for v := range 1000000 { //nolint:typecheck
+		for v := range 1000000 {
 			itoaPlus(v)
 		}
 	}
@@ -28,7 +28,7 @@ func BenchmarkItoaPlus(b *testing.B) {
 
 func BenchmarkAppendInt(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		for v := range 1000000 { //nolint:typecheck
+		for v := range 1000000 {
 			appendInt(v)
 		}
 	}

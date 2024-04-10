@@ -53,7 +53,6 @@ func (m *MyWriter) Write(p []byte) (int, error) {
 }
 
 func main() {
-
 	reader := NewReaderFromBuffer([]byte("Hello, World!\nHappy New Year!"))
 	buffer := make([]byte, len(reader.data))
 	writer := NewWriterToBuffer(buffer)
