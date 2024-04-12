@@ -1,13 +1,13 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"math"
 )
 
 func main() {
-	fmt.Println(math.MaxInt32)
-	fmt.Println(add(1))
+	log.Println(math.MaxInt32)
+	log.Println(add(1))
 }
 
 func add(a int32) int32 {

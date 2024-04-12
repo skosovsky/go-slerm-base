@@ -38,7 +38,7 @@ func main() {
 	wg.Add(1)
 	in := generateWork(work, &wg)
 
-	wg.Add(3)
+	wg.Add(3) //nolint:gomnd // it's learning code
 	fanOut(in, "Alice", &wg)
 	fanOut(in, "Jack", &wg)
 	fanOut(in, "Bob", &wg)

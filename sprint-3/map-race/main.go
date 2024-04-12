@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"strings"
 	"sync"
 )
@@ -24,7 +24,7 @@ func mapRace() {
 		}
 	}()
 	wg.Wait()
-	fmt.Println(len(data))
+	log.Println(len(data))
 }
 
 func countWords(line string) {
@@ -41,7 +41,7 @@ func countWords(line string) {
 	}
 	defer wg.Wait()
 
-	fmt.Println(len(data))
+	log.Println(len(data))
 }
 
 func countWordsMutex(line string) {
@@ -61,8 +61,8 @@ func countWordsMutex(line string) {
 	}
 	wg.Wait()
 
-	fmt.Println(data["да"])
-	fmt.Println(len(data))
+	log.Println(data["да"])
+	log.Println(len(data))
 }
 
 func countWordsSyncMap(line string) {
@@ -74,18 +74,21 @@ func countWordsSyncMap(line string) {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
-			if iNum, ok := data.Load(word); ok {
-				num := iNum.(int)
-				num++
-				data.Store(word, num)
-				return
+			if iNum, isLoad := data.Load(word); isLoad {
+				if num, ok := iNum.(int); ok {
+					num++
+					data.Store(word, num)
+					return
+				} else {
+					return
+				}
 			}
 			data.Store(word, 1)
 		}()
 	}
 	wg.Wait()
 
-	fmt.Println(data.Load("да"))
+	log.Println(data.Load("да"))
 }
 
 func race() {
@@ -106,7 +109,7 @@ func race() {
 		wg.Wait()
 		sumAll += sum
 	}
-	fmt.Println(sumAll)
+	log.Println(sumAll)
 }
 
 func raceTwo() {
@@ -125,7 +128,7 @@ func raceTwo() {
 		}()
 	}
 	wg.Wait()
-	fmt.Println(sumAll)
+	log.Println(sumAll)
 }
 
 func main() {

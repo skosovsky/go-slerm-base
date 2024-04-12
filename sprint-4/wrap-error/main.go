@@ -46,17 +46,17 @@ func repositoryMethod(value string) error {
 }
 
 func main() {
-	m := make(map[string]string)
-	err := httpHandler(m)
+	data := make(map[string]string)
+	err := httpHandler(data)
 	log.Println(errors.Is(err, ErrHandler)) // true
 
-	m["value"] = "service-error"
-	err = httpHandler(m)
+	data["value"] = "service-error"
+	err = httpHandler(data)
 	log.Println(errors.Is(err, ErrHandler), errors.Is(err, ErrService)) // false true
 	log.Println(err)                                                    // service returned error: service error
 
-	m["value"] = "repo-error"
-	err = httpHandler(m)
+	data["value"] = "repo-error"
+	err = httpHandler(data)
 	log.Println(errors.Is(err, ErrHandler), errors.Is(err, ErrService), errors.Is(err, ErrRepository)) // false false true
 	log.Println(err)                                                                                   // service returned error: repo returned error: db query error
 

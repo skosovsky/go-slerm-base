@@ -6,8 +6,8 @@ import (
 )
 
 func calculate(num int) int {
-	time.Sleep(500 * time.Millisecond)
-	return num * 2
+	time.Sleep(500 * time.Millisecond) //nolint:gomnd // it's learning code
+	return num * 2                     //nolint:gomnd // it's learning code
 }
 
 func main() {
@@ -15,7 +15,7 @@ func main() {
 
 	data := make([]int, 0, dataSize)
 	for i := range dataSize {
-		data = append(data, i+10)
+		data = append(data, i+10) //nolint:gomnd // it's learning code
 	}
 
 	results := make([]int, dataSize)

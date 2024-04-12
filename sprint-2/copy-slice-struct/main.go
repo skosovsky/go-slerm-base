@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"log"
+)
 
 type House struct {
 	name string
@@ -23,18 +25,18 @@ func main() {
 	var houses []House
 	houses = append(houses, house1, house2)
 
-	fmt.Println(houses)
+	log.Println(houses)
 
 	copyHouses := copySlc(houses)
-	fmt.Println(copyHouses)
+	log.Println(copyHouses)
 
 	copyHouses[0].name = "My house 3"
-	fmt.Println(copyHouses)
-	fmt.Println(houses)
+	log.Println(copyHouses)
+	log.Println(houses)
 }
 
 func copySlc(slc []House) []House {
-	var newSlc []House
+	newSlc := make([]House, 0, len(slc))
 	for _, v := range slc {
 		newPtr := *v.ptr
 		newHouse := House{v.name, &newPtr}

@@ -1,12 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"log"
+)
 
 func main() {
 	a := 5
 	b := 10
 	swap(&a, &b)
-	fmt.Println(a, b)
+	log.Println(a, b)
 }
 
 func swap(a *int, b *int) {

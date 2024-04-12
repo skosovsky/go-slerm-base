@@ -60,7 +60,7 @@ func main() {
 	// ch1 <- "Hello, Panic!" // send to close channel - panic // Panic: send on closed channel
 	// Best practice - Who close channel? writer only!
 
-	var c = make(chan int, 3)
+	var c = make(chan int, 3) //nolint:gomnd // it's learning code
 	c <- 20
 	c <- 10
 	c <- 0

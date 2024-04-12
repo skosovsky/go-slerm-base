@@ -1,10 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"log"
+)
 
 func main() {
 	data := []string{"a", "b", "a"}
-	fmt.Println(toFrequencyMap(data))
+	log.Println(toFrequencyMap(data))
 }
 
 func toFrequencyMap(s []string) map[string]int {

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"strings"
 	"unicode"
 )
@@ -77,6 +78,6 @@ func main() {
 
 	out3 := step3(out2)
 	for v := range out3 {
-		println(v)
+		log.Println(v)
 	}
 }

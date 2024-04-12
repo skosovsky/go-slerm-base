@@ -17,17 +17,17 @@ func listen(name string, data map[string]string, c *sync.Cond) {
 	c.L.Unlock()
 }
 
-func broadcast(name string, data map[string]string, c *sync.Cond) {
+func broadcast(name string, data map[string]string, cond *sync.Cond) {
 	time.Sleep(time.Second)
 
-	c.L.Lock()
+	cond.L.Lock()
 
 	data["key"] = "value"
 
 	fmt.Printf("[%s] данные получены\n", name) //nolint:forbidigo // it's learning code
 
-	c.Broadcast()
-	c.L.Unlock()
+	cond.Broadcast()
+	cond.L.Unlock()
 }
 
 // See https://wcademy.ru/go-multithreading-sync-cond/
