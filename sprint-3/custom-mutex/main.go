@@ -24,14 +24,14 @@ func (m mutex) Unlock() {
 }
 
 func main() {
-	const N = 1000
+	const count = 1000
 
 	m := newMutex()
 	counter := 0
 	var wg sync.WaitGroup
 
-	wg.Add(N)
-	for range N {
+	wg.Add(count)
+	for range count {
 		go func() {
 			defer wg.Done()
 			m.Lock()

@@ -22,13 +22,13 @@ type Logger interface {
 
 var ErrConnection = errors.New("connection error")
 
-func TransferMoney(e PaymentGateway, l Logger, username string, amount int) (int, error) {
-	balance, err := e.SendMoneyAndGetCurrentBalance(username, amount)
+func TransferMoney(gateway PaymentGateway, logger Logger, username string, amount int) (int, error) {
+	balance, err := gateway.SendMoneyAndGetCurrentBalance(username, amount)
 	if err != nil {
-		l.Error("send money error")
+		logger.Error("send money error")
 		return 0, fmt.Errorf("send money: %w", err)
 	}
 
-	l.Info("send money ok")
+	logger.Info("send money ok")
 	return balance, nil
 }

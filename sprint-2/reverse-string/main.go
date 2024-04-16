@@ -1,10 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"log"
+)
 
 func main() {
 	data := "привет!"
-	fmt.Println(reverse(data))
+	log.Println(reverse(data))
 }
 
 func reverse(s string) string {

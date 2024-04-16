@@ -1,10 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"log"
+)
 
 func main() {
-	fmt.Println(factorialRecursive(10))
-	fmt.Println(factorialFor(10))
+	log.Println(factorialRecursive(10))
+	log.Println(factorialFor(10))
 
 	limitRecursive()
 }

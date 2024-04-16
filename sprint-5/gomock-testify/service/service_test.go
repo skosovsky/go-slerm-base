@@ -36,32 +36,32 @@ func TestService(t *testing.T) {
 				m.EXPECT().SendMoneyAndGetCurrentBalance("John", 10).Return(0, service.ErrConnection)
 			},
 			initLogger: func(m *service.MockLogger) {
-				m.EXPECT().Info("send money error")
+				m.EXPECT().Error("send money error")
 			},
 			err: service.ErrConnection,
 		},
 	}
 
-	for name, tc := range testCases {
+	for name, testCase := range testCases {
 		t.Run(name, func(t *testing.T) {
 			ctrl := gomock.NewController(t)
 			defer ctrl.Finish()
 
 			extDep := service.NewMockPaymentGateway(ctrl)
-			if tc.initPaymentGateway != nil {
-				tc.initPaymentGateway(extDep)
+			if testCase.initPaymentGateway != nil {
+				testCase.initPaymentGateway(extDep)
 			}
 			logger := service.NewMockLogger(ctrl)
-			if tc.initLogger != nil {
-				tc.initLogger(logger)
+			if testCase.initLogger != nil {
+				testCase.initLogger(logger)
 			}
-			balance, err := service.TransferMoney(extDep, logger, tc.username, tc.amount)
+			balance, err := service.TransferMoney(extDep, logger, testCase.username, testCase.amount)
 			if err != nil {
-				require.ErrorIs(t, err, tc.err)
+				require.ErrorIs(t, err, testCase.err)
 			} else {
 				require.NoError(t, err)
 			}
-			require.Equal(t, balance, tc.balance)
+			require.Equal(t, balance, testCase.balance)
 		})
 	}
 }

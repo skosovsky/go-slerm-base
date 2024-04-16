@@ -1,10 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"log"
+)
 
 func main() {
 	slc := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
-	fmt.Println(reverse(slc))
+	log.Println(reverse(slc))
 }
 
 func reverse(slice []int) []int {

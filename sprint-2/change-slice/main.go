@@ -1,12 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 func main() {
 	slc := []int{1, 2, 3}
 	slc = appendNum(slc, 4, 5, 6)
-	fmt.Print(slc)
-	fmt.Println()
+	log.Print(slc)
+	log.Println()
 
 	slc4 := make([]int, 1, 4)
 	changeSlc(slc4)
@@ -18,7 +21,7 @@ func appendNum(slc []int, nums ...int) []int {
 }
 
 func changeSlc(slc []int) {
-	fmt.Println(len(slc), cap(slc))
+	log.Println(len(slc), cap(slc))
 	slc[0] = 1
-	fmt.Println(len(slc), cap(slc))
+	log.Println(len(slc), cap(slc))
 }

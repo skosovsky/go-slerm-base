@@ -7,8 +7,8 @@ import (
 	"github.com/hashicorp/go-multierror"
 )
 
-var Err1 = errors.New("error 1")
-var Err2 = errors.New("error 2")
+var Err1 = errors.New("error 1") //nolint:errname // it's learning code
+var Err2 = errors.New("error 2") //nolint:errname // it's learning code
 
 type CustomError struct{}
 

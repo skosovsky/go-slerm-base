@@ -1,7 +1,7 @@
 package math
 
 func AddWithError(a, b int) int {
-	if b == 10 {
+	if b == 10 { //nolint:gomnd // it's learning code
 		return 0
 	}
 

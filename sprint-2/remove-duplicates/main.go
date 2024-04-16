@@ -1,10 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"log"
+)
 
 func main() {
 	slc := []int{0, 0, 1, 2, 2, 1, 3, 4, 5, 6, 6, 6, 7, 6}
-	fmt.Println(removeDuplicates(slc))
+	log.Println(removeDuplicates(slc))
 }
 
 func removeDuplicates(slice []int) []int {
