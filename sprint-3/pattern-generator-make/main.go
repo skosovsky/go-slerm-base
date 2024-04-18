@@ -19,7 +19,7 @@ func makeGenerator(done <-chan struct{}, wg *sync.WaitGroup) <-chan int {
 				log.Println("done")
 				return
 			default:
-				time.Sleep(250 * time.Millisecond)
+				time.Sleep(250 * time.Millisecond) //nolint:gomnd // it's learning code
 				ch <- i
 				i++
 			}
@@ -32,7 +32,7 @@ func makeGenerator(done <-chan struct{}, wg *sync.WaitGroup) <-chan int {
 func main() {
 	var wg sync.WaitGroup
 	done := make(chan struct{})
-	wg.Add(2)
+	wg.Add(2) //nolint:gomnd // it's learning code
 
 	ch := makeGenerator(done, &wg)
 

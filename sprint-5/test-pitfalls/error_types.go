@@ -3,18 +3,24 @@ package main
 import (
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 )
 
 func GetURL(url string) (string, error) {
-	res, err := http.Get(url)
+	res, err := http.Get(url) //nolint:gosec,bodyclose,noctx // it's learning code
 	if err != nil {
 		return "", fmt.Errorf("error while getting url: %w", err)
 	}
 	if res.StatusCode != http.StatusOK {
 		return "", fmt.Errorf("did not get 200 from %s, got %d", url, res.StatusCode)
 	}
-	defer res.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err = Body.Close()
+		if err != nil {
+			log.Printf("error closing response body: %v", err)
+		}
+	}(res.Body)
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
@@ -34,7 +40,7 @@ func (b BadStatusError) Error() string {
 }
 
 func GetURLWithErrorType(url string) (string, error) {
-	res, err := http.Get(url)
+	res, err := http.Get(url) //nolint:gosec,bodyclose,noctx // it's learning code
 	if err != nil {
 		return "", fmt.Errorf("error while getting url: %w", err)
 	}
@@ -44,7 +50,12 @@ func GetURLWithErrorType(url string) (string, error) {
 			Status: res.StatusCode,
 		}
 	}
-	defer res.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err = Body.Close()
+		if err != nil {
+			log.Printf("error closing response body: %v", err)
+		}
+	}(res.Body)
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {

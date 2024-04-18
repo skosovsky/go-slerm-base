@@ -1,13 +1,13 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"strings"
 )
 
 func main() {
 	str := "привет мой дорогой друг и снова привет мой лучший друг но ты же друг"
-	fmt.Println(frequentWord(str))
+	log.Println(frequentWord(str))
 }
 
 func frequentWord(str string) string {

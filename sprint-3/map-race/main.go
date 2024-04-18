@@ -10,7 +10,7 @@ func mapRace() {
 	var data = make(map[int]int)
 
 	var wg sync.WaitGroup
-	wg.Add(2)
+	wg.Add(2) //nolint:gomnd // it's learning code
 	go func() {
 		defer wg.Done()
 		for i := range 10 {
@@ -20,7 +20,7 @@ func mapRace() {
 	go func() {
 		defer wg.Done()
 		for i := range 10 {
-			data[i+100] = i + 100
+			data[i+100] = i + 100 //nolint:gomnd // it's learning code
 		}
 	}()
 	wg.Wait()
@@ -75,13 +75,13 @@ func countWordsSyncMap(line string) {
 		go func() {
 			defer wg.Done()
 			if iNum, isLoad := data.Load(word); isLoad {
-				if num, ok := iNum.(int); ok {
+				num, ok := iNum.(int)
+				if ok {
 					num++
 					data.Store(word, num)
 					return
-				} else {
-					return
 				}
+				return
 			}
 			data.Store(word, 1)
 		}()

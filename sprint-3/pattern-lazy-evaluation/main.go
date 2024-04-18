@@ -7,25 +7,25 @@ import (
 
 type LazyInt func() int
 
-func Make(f LazyInt) LazyInt {
+func Make(numInt LazyInt) LazyInt {
 	var num int
 	var once sync.Once
 
 	return func() int {
 		once.Do(func() {
-			num = f()
-			f = nil // so that f can now be GC-ed
+			num = numInt()
+			numInt = nil // so that f can now be GC-ed
 		})
 		return num
 	}
 }
 
 func main() {
-	n := Make(func() int {
+	lazyInt := Make(func() int {
 		log.Println("Doing expensive calculations")
-		return 23
+		return 23 //nolint:gomnd // it's learning code
 	})
 
-	log.Println(n())
-	log.Println(n() + 42)
+	log.Println(lazyInt())
+	log.Println(lazyInt() + 42) //nolint:gomnd // it's learning code
 }

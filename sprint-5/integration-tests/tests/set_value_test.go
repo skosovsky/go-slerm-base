@@ -6,7 +6,6 @@ import (
 	"testing"
 
 	"github.com/skosovsky/go-slerm-base/sprint-5/integration-tests/logic"
-
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/modules/redis"
 )

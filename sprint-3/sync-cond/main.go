@@ -8,13 +8,13 @@ import (
 	"time"
 )
 
-func listen(name string, data map[string]string, c *sync.Cond) {
-	c.L.Lock()
-	c.Wait()
+func listen(name string, data map[string]string, cond *sync.Cond) {
+	cond.L.Lock()
+	cond.Wait()
 
 	fmt.Printf("[%s] %s\n", name, data["key"]) //nolint:forbidigo // it's learning code
 
-	c.L.Unlock()
+	cond.L.Unlock()
 }
 
 func broadcast(name string, data map[string]string, cond *sync.Cond) {

@@ -1,16 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"log"
+)
 
 func main() {
-	data := map[int]int{1: 1, 2: 2, 3: 3, 4: 4}
+	data := map[int]int{1: 1, 2: 2, 3: 3, 4: 4} //nolint:gomnd // it's learning code
 	iterationByMap(data)
-	fmt.Println(data)
+	log.Println(data)
 }
 
 func iterationByMap(data map[int]int) {
 	for key, value := range data {
-		fmt.Printf("%d:%d ", key, value)
+		log.Printf("%d:%d ", key, value)
 	}
-	fmt.Println()
+	log.Println()
 }

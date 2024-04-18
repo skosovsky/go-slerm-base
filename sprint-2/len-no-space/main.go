@@ -1,10 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"log"
+)
 
 func main() {
 	data := "Привет, как дела?"
-	fmt.Println(stringLengthWithoutSpaces(data))
+	log.Println(stringLengthWithoutSpaces(data))
 }
 
 func stringLengthWithoutSpaces(str string) int {

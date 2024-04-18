@@ -14,7 +14,7 @@ func (c *CustomError) Error() string {
 }
 
 func nonNilErrorInterface() {
-	var typed *CustomError = nil
+	var typed *CustomError = nil //nolint:revive // it's test
 	// var err error = (*CustomError)(nil)
 
 	var err error = typed

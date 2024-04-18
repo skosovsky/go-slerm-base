@@ -1,14 +1,14 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"math"
 )
 
 func main() {
 	var lat1, lon1 float32 = 55.873733, 37.401319
 	var lat2, lon2 float32 = 55.873733, 37.401319
-	fmt.Println(distanceCompare(lat1, lon1, lat2, lon2))
+	log.Println(distanceCompare(lat1, lon1, lat2, lon2))
 }
 
 func distanceCompare(lat1, lon1 float32, lat2, lon2 float32) bool {

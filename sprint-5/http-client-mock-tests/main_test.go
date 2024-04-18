@@ -61,5 +61,4 @@ func TestServiceGetData(t *testing.T) {
 			t.Errorf("expected %v, got %v", err, errHTTPClient)
 		}
 	})
-
 }

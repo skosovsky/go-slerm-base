@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 )
 
 type LinkedList struct {
@@ -30,10 +30,10 @@ func (l *LinkedList) append(value int) {
 func (l *LinkedList) print() {
 	current := l.head
 	for current != nil {
-		fmt.Printf("%d - > ", current.value)
+		log.Printf("%d - > ", current.value)
 		current = current.next
 	}
-	fmt.Println("nil")
+	log.Println("nil")
 }
 
 func reverseLinkedList(list *LinkedList) *LinkedList {
@@ -41,7 +41,10 @@ func reverseLinkedList(list *LinkedList) *LinkedList {
 	current := list.head
 
 	for current != nil {
-		newNode := &Node{value: current.value}
+		newNode := &Node{
+			value: current.value,
+			next:  nil,
+		}
 		newNode.next = reversedHead
 		reversedHead = newNode
 		current = current.next
@@ -51,18 +54,20 @@ func reverseLinkedList(list *LinkedList) *LinkedList {
 }
 
 func main() {
-	list := LinkedList{}
+	list := LinkedList{
+		head: nil,
+	}
 	list.append(1)
-	list.append(2)
-	list.append(3)
-	list.append(4)
-	fmt.Println("Original Linked List:")
+	list.append(2) //nolint:gomnd // it's learning code
+	list.append(3) //nolint:gomnd // it's learning code
+	list.append(4) //nolint:gomnd // it's learning code
+	log.Println("Original Linked List:")
 	list.print()
 
 	reversedList := reverseLinkedList(&list)
-	fmt.Println("Reversed Linked List:")
+	log.Println("Reversed Linked List:")
 	reversedList.print()
 
-	fmt.Println("Original Linked List (unchanged):")
+	log.Println("Original Linked List (unchanged):")
 	list.print()
 }

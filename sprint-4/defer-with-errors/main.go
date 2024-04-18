@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 )
@@ -8,23 +9,28 @@ import (
 const filename = "/tmp/go-course.txt"
 
 func invalidUsage() error {
-	f, err := os.Open(filename)
+	file, err := os.Open(filename)
 	if err != nil {
-		return err
+		return fmt.Errorf("opening file error: %w", err)
 	}
-	defer f.Close()
+	defer func(f *os.File) {
+		err = f.Close()
+		if err != nil {
+			log.Println(err)
+		}
+	}(file)
 
 	return nil
 }
 
 func correctUsage() error {
-	f, err := os.Open(filename)
+	file, err := os.Open(filename)
 	if err != nil {
-		return err
+		return fmt.Errorf("opening file error: %w", err)
 	}
 
 	defer func() {
-		closeErr := f.Close()
+		closeErr := file.Close()
 		if closeErr != nil {
 			if err == nil {
 				err = closeErr

@@ -15,13 +15,13 @@ func server(c <-chan Request) {
 	}
 }
 
-func safelyDo(r Request) {
+func safelyDo(req Request) {
 	defer func() {
 		if err := recover(); err != nil {
 			log.Println("request error:", err)
 		}
 	}()
-	do(r)
+	do(req)
 }
 
 func do(r Request) {

@@ -39,29 +39,29 @@ func (s *SampleStruct) Method() string {
 }
 
 func main() {
-	var w io.Writer
+	var writer io.Writer
 
-	w = os.Stdout
-	_, _ = w.Write([]byte("Hello, World!\n")) // Hello, World!
+	writer = os.Stdout
+	_, _ = writer.Write([]byte("Hello, World!\n")) // Hello, World!
 
-	w = &NetworkSender{}
-	_, _ = w.Write([]byte("Hello, World!\n")) // Network send: Hello, World!
+	writer = &NetworkSender{}
+	_, _ = writer.Write([]byte("Hello, World!\n")) // Network send: Hello, World!
 
 	// type assertion
-	var i any = "hello"
-	s := i.(string) //nolint:errcheck // it's learning code
+	var iData any = "hello"
+	s := iData.(string) //nolint:errcheck // it's learning code
 	log.Println(s)
 
-	// number := i.(int) // panic: interface conversion, interface{} is string, not int
-	number, ok := i.(int)
+	// number := iData.(int) // panic: interface conversion, interface{} is string, not int
+	number, ok := iData.(int)
 	if !ok {
-		log.Printf("Type %T is not a number, number =%d\n", i, number)
+		log.Printf("Type %T is not a number, number =%d\n", iData, number)
 	} else {
 		log.Println(number)
 	}
 
 	// type conversion
-	intVar := string(97) //nolint:govet // it's learning code
+	intVar := string(97) //nolint:govet,gomnd // it's learning code
 	log.Println(intVar)  // a
 
 	var int32Var int32 = 100500

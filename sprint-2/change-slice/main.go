@@ -1,19 +1,18 @@
 package main
 
 import (
-	"fmt"
 	"log"
 )
 
 func main() {
 	slc := []int{1, 2, 3}
-	slc = appendNum(slc, 4, 5, 6)
+	slc = appendNum(slc, 4, 5, 6) //nolint:gomnd // it's learning code
 	log.Print(slc)
 	log.Println()
 
-	slc4 := make([]int, 1, 4)
+	slc4 := make([]int, 1, 4) //nolint:gomnd // it's learning code
 	changeSlc(slc4)
-	fmt.Print(slc4)
+	log.Print(slc4)
 }
 
 func appendNum(slc []int, nums ...int) []int {

@@ -1,10 +1,11 @@
 package service_test
 
 import (
+	"testing"
+
 	"github.com/skosovsky/go-slerm-base/sprint-5/gomock-testify/service"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/mock/gomock"
-	"testing"
 )
 
 func TestService(t *testing.T) {

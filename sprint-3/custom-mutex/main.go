@@ -26,7 +26,7 @@ func (m mutex) Unlock() {
 func main() {
 	const count = 1000
 
-	m := newMutex()
+	customMutex := newMutex()
 	counter := 0
 	var wg sync.WaitGroup
 
@@ -34,8 +34,8 @@ func main() {
 	for range count {
 		go func() {
 			defer wg.Done()
-			m.Lock()
-			defer m.Unlock()
+			customMutex.Lock()
+			defer customMutex.Unlock()
 			counter++
 		}()
 	}

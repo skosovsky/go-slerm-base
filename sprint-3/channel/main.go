@@ -60,15 +60,15 @@ func main() {
 	// ch1 <- "Hello, Panic!" // send to close channel - panic // Panic: send on closed channel
 	// Best practice - Who close channel? writer only!
 
-	var c = make(chan int, 3) //nolint:gomnd // it's learning code
-	c <- 20
-	c <- 10
-	c <- 0
-	close(c)
+	var chC = make(chan int, 3) //nolint:gomnd // it's learning code
+	chC <- 20
+	chC <- 10
+	chC <- 0
+	close(chC)
 
 	// Receive from a closed channel returns the zero value.
 	for range 5 {
-		v, ok := <-c
+		v, ok := <-chC
 		fmt.Printf("open?: %v, value %d\n", ok, v) //nolint:forbidigo // it's learning code
 		// open?: true, value 20
 		// open?: true, value 10
@@ -77,12 +77,12 @@ func main() {
 		// open?: false, value 0
 	}
 
-	var c2 = make(chan int, 3) //nolint:gomnd // it's learning code
-	c2 <- 20
-	c2 <- 10
-	c2 <- 0
-	close(c2)
-	for v := range c2 {
+	var chC2 = make(chan int, 3) //nolint:gomnd // it's learning code
+	chC2 <- 20
+	chC2 <- 10
+	chC2 <- 0
+	close(chC2)
+	for v := range chC2 {
 		fmt.Printf("value %d\n", v) //nolint:forbidigo // it's learning code
 		// value 20
 		// value 10

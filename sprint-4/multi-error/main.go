@@ -47,7 +47,8 @@ func main() {
 	//  * error 2
 	//  * custom error
 
-	if multiErr, ok := result.(*multierror.Error); ok {
+	var multiErr *multierror.Error
+	if errors.As(result, &multiErr) {
 		for _, e := range multiErr.Errors {
 			if errors.Is(e, Err2) {
 				log.Println("retry step2 may be?")
@@ -64,7 +65,7 @@ func main() {
 		log.Println("we have err 2 in list")
 	}
 
-	var multiErr *multierror.Error
-	multiErr = multierror.Append(multiErr, Err1)
-	log.Println(multiErr.ErrorOrNil())
+	var multiErr2 *multierror.Error
+	multiErr2 = multierror.Append(multiErr2, Err1)
+	log.Println(multiErr2.ErrorOrNil())
 }

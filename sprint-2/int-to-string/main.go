@@ -14,7 +14,7 @@ func itoa(a int) string {
 }
 
 func sprint(a int) string {
-	return fmt.Sprint(a)
+	return fmt.Sprint(a) //nolint:perfsprint // it's test
 }
 
 func itoaPlus(a int) string {
@@ -22,5 +22,5 @@ func itoaPlus(a int) string {
 }
 
 func appendInt(a int) string {
-	return string(strconv.AppendInt([]byte{}, int64(a), 10))
+	return string(strconv.AppendInt([]byte{}, int64(a), 10)) //nolint:gomnd // it's learning code
 }

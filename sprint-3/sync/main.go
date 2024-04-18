@@ -107,7 +107,7 @@ func syncMap() {
 	var wg sync.WaitGroup
 	var dataMap sync.Map // dataMap not nil, but don't copy
 
-	wg.Add(10)
+	wg.Add(10) //nolint:gomnd // it's learning code
 
 	for i := 1; i <= 5; i++ {
 		go func(key int) {

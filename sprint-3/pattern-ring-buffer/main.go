@@ -28,7 +28,7 @@ func (r *ringBuffer) Run() {
 
 func main() {
 	in := make(chan int)
-	out := make(chan int, 4)
+	out := make(chan int, 4) //nolint:gomnd // it's learning code
 
 	rb := newRingBuffer(in, out)
 

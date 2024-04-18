@@ -1,10 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"log"
+)
 
 func main() {
 	data := "как дела?"
-	fmt.Println(string(frequentRune(data)))
+	log.Println(string(frequentRune(data)))
 }
 
 func frequentRune(str string) rune {

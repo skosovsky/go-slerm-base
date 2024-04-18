@@ -1,12 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"log"
+)
 
 func main() {
 	data1 := map[int]struct{}{1: {}, 2: {}, 21: {}}
 	data2 := map[int]struct{}{21: {}}
 	intersect := mapKeyIntersect(data1, data2)
-	fmt.Println(intersect)
+	log.Println(intersect)
 }
 
 func mapKeyIntersect(m1 map[int]struct{}, m2 map[int]struct{}) []int {

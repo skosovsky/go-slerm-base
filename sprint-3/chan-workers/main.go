@@ -1,8 +1,9 @@
 package main
 
 import (
-	"crypto/md5"
+	"crypto/md5" //nolint:gosec // it's learning code
 	"encoding/hex"
+	"log"
 	"sync"
 )
 
@@ -30,7 +31,7 @@ func (w *Worker) Run() {
 	go func() {
 		defer w.wg.Done()
 		for task := range w.tasks {
-			hash := md5.Sum([]byte(task))
+			hash := md5.Sum([]byte(task)) //nolint:gosec // it's learning code
 			w.out <- hex.EncodeToString(hash[:])
 		}
 	}()
@@ -56,7 +57,7 @@ func main() {
 
 	wg.Wait()
 	for a := 1; a <= totalJobs; a++ { // receive results
-		println(<-out)
+		log.Println(<-out)
 	}
 	close(out)
 }

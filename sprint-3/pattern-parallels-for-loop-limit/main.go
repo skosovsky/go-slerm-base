@@ -10,9 +10,9 @@ type empty struct{}
 
 func calculate(num int) int {
 	log.Printf("[%s] Calc for %d\n", time.Now().Format("15:04:05"), num)
-	time.Sleep(1200 * time.Millisecond)
+	time.Sleep(1200 * time.Millisecond) //nolint:gomnd // it's learning code
 
-	return num * 2
+	return num * 2 //nolint:gomnd // it's learning code
 }
 
 func main() {

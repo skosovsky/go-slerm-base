@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 )
 
@@ -17,33 +18,38 @@ type Result struct {
 }
 
 func sendRequest(request Request, url string) (*Result, error) {
-	b, err := json.Marshal(request)
+	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal request: %w", err)
 	}
 
-	body := bytes.NewBuffer(b)
+	body := bytes.NewBuffer(data)
 	req, err := http.NewRequest(http.MethodPost, url, body) //nolint:noctx // it's learning code
 	if err != nil {
 		return nil, fmt.Errorf("failed to create request: %w", err)
 	}
 	req.Header.Set("Content-Type", "application/json")
 	client := &http.Client{}
-	response, err := client.Do(req)
+	response, err := client.Do(req) //nolint:bodyclose // body is closed
 	if err != nil {
 		return nil, fmt.Errorf("failed to send request: %w", err)
 	}
 
-	b, err = io.ReadAll(response.Body)
+	data, err = io.ReadAll(response.Body)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read response: %w", err)
 	}
-	defer response.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err = Body.Close()
+		if err != nil {
+			log.Printf("failed to close response body: %v", err)
+		}
+	}(response.Body)
 
 	result := Result{
 		Message: "",
 	}
-	err = json.Unmarshal(b, &result)
+	err = json.Unmarshal(data, &result)
 	if err != nil {
 		return nil, fmt.Errorf("failed to unmarshal response: %w", err)
 	}

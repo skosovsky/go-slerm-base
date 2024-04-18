@@ -19,14 +19,14 @@ func generateWork(work []int) <-chan int {
 	return ch
 }
 
-func pipeline(f func(i int) (int, bool), in <-chan int) <-chan int {
+func pipeline(fnc func(i int) (int, bool), in <-chan int) <-chan int {
 	out := make(chan int)
 
 	go func() {
 		defer close(out)
 
 		for v := range in {
-			if value, ok := f(v); ok {
+			if value, ok := fnc(v); ok {
 				out <- value
 			}
 		}
@@ -43,12 +43,12 @@ func filterOdd(num int) (int, bool) {
 }
 
 func square(num int) (int, bool) {
-	value := math.Pow(float64(num), 2)
+	value := math.Pow(float64(num), 2) //nolint:gomnd // it's learning code
 	return int(value), true
 }
 
 func half(num int) (int, bool) {
-	return num / 2, true
+	return num / 2, true //nolint:gomnd // it's learning code
 }
 
 func main() {

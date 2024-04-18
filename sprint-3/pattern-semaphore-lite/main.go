@@ -35,5 +35,5 @@ func main() {
 		}()
 	}
 
-	time.Sleep(15 * time.Second)
+	time.Sleep(15 * time.Second) //nolint:gomnd // it's learning code
 }

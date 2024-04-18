@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"log"
+)
 
 const arrSize = 10
 
@@ -56,16 +58,18 @@ func (h *HashTable) get(key int) (int, bool) {
 }
 
 func main() {
-	hashTable := HashTable{}
-
-	hashTable.insert(10, 1)
-	hashTable.insert(20, 2)
-	hashTable.insert(30, 3)
-	hashTable.insert(11, 4)
-
-	val, ok := hashTable.get(10)
-	if !ok {
-		fmt.Println("Value not found")
+	hashTable := HashTable{
+		arr: [10]*Node{},
 	}
-	fmt.Println("Value for key", val)
+
+	hashTable.insert(10, 1) //nolint:gomnd // it's learning code
+	hashTable.insert(20, 2) //nolint:gomnd // it's learning code
+	hashTable.insert(30, 3) //nolint:gomnd // it's learning code
+	hashTable.insert(11, 4) //nolint:gomnd // it's learning code
+
+	val, ok := hashTable.get(10) //nolint:gomnd // it's learning code
+	if !ok {
+		log.Println("Value not found")
+	}
+	log.Println("Value for key", val)
 }

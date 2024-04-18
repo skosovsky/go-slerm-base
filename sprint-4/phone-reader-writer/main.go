@@ -31,7 +31,7 @@ type phoneWriter struct{}
 
 func (w phoneWriter) Write(data []byte) (int, error) {
 	if len(data) == 0 {
-		return 0, nil
+		return 0, errors.New("invalid data")
 	}
 
 	for i := range data {
@@ -47,17 +47,17 @@ func main() {
 	phone1 := phoneReader("+7(964)218 93310")
 
 	buffer := make([]byte, phoneLength)
-	n, err := phone1.Read(buffer)
+	num, err := phone1.Read(buffer)
 
 	log.Println(string(buffer))
 
-	log.Println(n, err, len(buffer), cap(buffer))
+	log.Println(num, err, len(buffer), cap(buffer))
 
 	phone2 := []byte("+7(964)218 9310")
 	writer := phoneWriter{}
-	n, err = writer.Write(phone2)
+	num, err = writer.Write(phone2)
 
 	log.Println(string(phone2))
 
-	log.Println(n, err, len(phone2), cap(phone2))
+	log.Println(num, err, len(phone2), cap(phone2))
 }

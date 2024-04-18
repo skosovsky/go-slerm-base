@@ -15,7 +15,7 @@ type data struct {
 func doGet(url string) (string, error) {
 	time.Sleep(200 * time.Millisecond) //nolint:gomnd // it's learning code
 
-	failure := rand.Int()%10 > 5 //nolint:gosec // it's learning code
+	failure := rand.Int()%10 > 5 //nolint:gomnd,gosec // it's learning code
 	if failure {
 		return "", errors.New("timeout")
 	}

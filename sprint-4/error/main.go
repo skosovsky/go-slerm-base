@@ -53,10 +53,10 @@ func (s SomeOtherError) Error() string {
 }
 
 func main() {
-	log.Println(divide(10, 10))
+	log.Println(divide(10, 10)) //nolint:gomnd // it's learning code
 	// log.Println(divide(10,0)) // panic: runtime error, integer divide by zero
 
-	val, err := divide2(10, 0)
+	val, err := divide2(10, 0) //nolint:gomnd // it's learning code
 	if err != nil {
 		if err.Error() == "division by 0" {
 			log.Println("Please provide valid input") // this
@@ -64,11 +64,11 @@ func main() {
 			log.Printf("Some unknown error: %s\n", err)
 		}
 	} else {
-		log.Printf("%d / %d = %d\n", 10, 0, val)
+		log.Printf("%d / %d = %d\n", 10, 0, val) //nolint:gomnd // it's learning code
 	}
 
 	// sentinel error
-	val, err = divide3(10, 0)
+	val, err = divide3(10, 0) //nolint:gomnd // it's learning code
 	if err != nil {
 		if errors.Is(err, ErrDivisionZero) {
 			log.Println("Please provide valid input") // this
@@ -76,12 +76,12 @@ func main() {
 			log.Printf("Some unknown error: %s\n", err)
 		}
 	} else {
-		log.Printf("%d / %d = %d\n", 10, 0, val)
+		log.Printf("%d / %d = %d\n", 10, 0, val) //nolint:gomnd // it's learning code
 	}
 
 	// custom error
-	err = NewRetryError(3)
-	log.Println(err) // Retries: 3
+	err = NewRetryError(3) //nolint:gomnd // it's learning code
+	log.Println(err)       // Retries: 3
 
 	var retryErr RetryError
 	if errors.As(err, &retryErr) {
@@ -93,10 +93,12 @@ func main() {
 		log.Println(otherErr)
 	}
 
-	if e, ok := err.(RetryError); ok {
-		log.Println("type assert err:", e) // type assert err: Retries: 3
+	var retryError RetryError
+	if errors.As(err, &retryError) {
+		log.Println("type assert err:", retryError) // type assert err: Retries: 3
 	}
-	if e, ok := err.(SomeOtherError); ok { // ok = false
-		log.Println("type assert err:", e) // wouldn't execute
+	var someOtherError SomeOtherError
+	if errors.As(err, &someOtherError) { // ok = false
+		log.Println("type assert err:", someOtherError) // wouldn't execute
 	}
 }

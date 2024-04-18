@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"sync"
 	"time"
 )
@@ -11,7 +11,7 @@ func small() {
 		value int
 	}
 
-	ch := make(chan smallStruct, 10000000*2)
+	ch := make(chan smallStruct, 10000000*2) //nolint:gomnd // it's learning code
 	var wg sync.WaitGroup
 	var duration time.Duration
 	var startTime time.Time
@@ -21,14 +21,14 @@ func small() {
 	go func() {
 		defer wg.Done()
 		for range 10000000 {
-			ch <- smallStruct{value: 1000}
+			ch <- smallStruct{value: 1000} //nolint:gomnd // it's learning code
 			ch <- smallStruct{value: -1000}
 		}
 		close(ch)
 	}()
 	wg.Wait()
 	duration = time.Since(startTime)
-	fmt.Println("[small] Transfer to chan:", duration)
+	log.Println("[small] Transfer to chan:", duration)
 
 	startTime = time.Now()
 	var sum int
@@ -36,7 +36,7 @@ func small() {
 		sum += val.value
 	}
 	duration = time.Since(startTime)
-	fmt.Println("[small] Count and transfer from chan:", duration, sum)
+	log.Println("[small] Count and transfer from chan:", duration, sum)
 }
 
 func big() {
@@ -47,7 +47,7 @@ func big() {
 		value int
 	}
 
-	ch := make(chan bigStruct, 10000000*2)
+	ch := make(chan bigStruct, 10000000*2) //nolint:gomnd // it's learning code
 	var wg sync.WaitGroup
 	var duration time.Duration
 	var startTime time.Time
@@ -57,14 +57,14 @@ func big() {
 	go func() {
 		defer wg.Done()
 		for range 10000000 {
-			ch <- bigStruct{name: "Sfdfsdfsdfsdf", email: "sg@mail.ru", age: 54, value: 1000}
-			ch <- bigStruct{name: "Sfsdfsdfsfsdf", email: "sg@mail.ru", age: 54, value: -1000}
+			ch <- bigStruct{name: "Sfdfsdfsdfsdf", email: "sg@mail.ru", age: 54, value: 1000}  //nolint:gomnd // it's learning code
+			ch <- bigStruct{name: "Sfsdfsdfsfsdf", email: "sg@mail.ru", age: 54, value: -1000} //nolint:gomnd // it's learning code
 		}
 		close(ch)
 	}()
 	wg.Wait()
 	duration = time.Since(startTime)
-	fmt.Println("[BIG] Transfer to chan:", duration)
+	log.Println("[BIG] Transfer to chan:", duration)
 
 	startTime = time.Now()
 	var sum int
@@ -72,7 +72,7 @@ func big() {
 		sum += val.value
 	}
 	duration = time.Since(startTime)
-	fmt.Println("[BIG] Count and transfer from chan:", duration, sum)
+	log.Println("[BIG] Count and transfer from chan:", duration, sum)
 }
 
 func main() {
