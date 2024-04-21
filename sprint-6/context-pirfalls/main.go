@@ -18,7 +18,7 @@ func main() {
 	ctx := context.Background()               // root of all derived contexts
 	ctx = context.WithValue(ctx, "param", 10) //nolint:revive,gomnd,staticcheck // it's learning code
 	log.Println(ctx.Value("param"))           // 10
-	ctx = context.WithValue(ctx, "param", 20) //nolint:revive // it's learning code
+	ctx = context.WithValue(ctx, "param", 20) //nolint:gomnd,revive,staticcheck // it's learning code
 	log.Println(ctx.Value("param"))           // 20
 
 	ctx2 := context.Background()
@@ -43,11 +43,11 @@ func main() {
 
 	// explicit better than implicit
 	ctx4 := context.Background()
-	ctx4 = context.WithValue(ctx4, "importantParam", 123) //nolint:revive,gomnd // it's learning code
+	ctx4 = context.WithValue(ctx4, "importantParam", 123) //nolint:revive,gomnd,staticcheck // it's learning code
 	myMethodImplicit(ctx4)
 
 	// better
-	myMethodExplicit(ctx4, 123)
+	myMethodExplicit(ctx4, 123) //nolint:gomnd // it's learning code
 
 	// explicit context value usage
 	// addRequestID
@@ -116,7 +116,7 @@ func networkRequest() {
 		return
 	}
 
-	rsp, err := client.Do(req)
+	rsp, err := client.Do(req) //nolint:bodyclose // it's closed
 	if rsp == nil {
 		log.Printf("nil response\n")
 		return
