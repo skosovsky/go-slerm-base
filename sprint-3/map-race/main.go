@@ -47,15 +47,15 @@ func countWords(line string) {
 func countWordsMutex(line string) {
 	var data = make(map[string]int)
 	var wg sync.WaitGroup
-	var m sync.Mutex
+	var mu sync.Mutex
 
 	words := strings.Split(line, " ")
 	for _, word := range words {
 		wg.Add(1)
-		m.Lock()
+		mu.Lock()
 		go func() {
 			defer wg.Done()
-			defer m.Unlock()
+			defer mu.Unlock()
 			data[word]++
 		}()
 	}

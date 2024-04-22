@@ -231,7 +231,7 @@ linters-settings:
       - w http.ResponseWriter
       - r *http.Request
       - wg sync.WaitGroup
-      - m sync.Mutex
+      - mu sync.Mutex
 
 linters:
   disable-all: true

@@ -15,16 +15,13 @@ func main() {
 	go func(ctx context.Context) {
 		var count int
 		for {
-			time.Sleep(3 * time.Second) //nolint:gomnd // it's learning code
-			count++
-
 			select {
 			case <-ctx.Done():
 				log.Println(count)
 				return
 			default:
-				log.Println("")
-				continue
+				time.Sleep(3 * time.Second) //nolint:gomnd // it's learning code
+				count++
 			}
 		}
 	}(ctx)

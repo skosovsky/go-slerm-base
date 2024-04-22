@@ -34,7 +34,7 @@ func main() {
 	}
 }
 
-// curl localhost:4000
+// curl localhost:4000 - run it.
 func handleRequest(w http.ResponseWriter, r *http.Request) {
 	log.Println("Handle started")
 	ctx := r.Context()

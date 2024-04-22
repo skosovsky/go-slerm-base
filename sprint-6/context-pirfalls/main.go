@@ -23,19 +23,18 @@ func main() {
 
 	ctx2 := context.Background()
 	var param1 oneParam = "param"
-	ctx2 = context.WithValue(ctx2, param1, 10)
+	ctx2 = context.WithValue(ctx2, param1, 10) //nolint:gomnd // it's learning code
 	var param2 otherParam = "param"
-	ctx2 = context.WithValue(ctx2, param2, 20)
-	log.Println(ctx2.Value(param1)) // 10
-	log.Println(ctx2.Value(param2)) // 20
+	ctx2 = context.WithValue(ctx2, param2, 20) //nolint:gomnd // it's learning code
+	log.Println(ctx2.Value(param1))            // 10
+	log.Println(ctx2.Value(param2))            // 20
 
 	// advisory cancellation
 	ctx3, cancel := context.WithCancel(context.Background())
 	go func() {
-		select {
-		case <-ctx3.Done():
+		if <-ctx3.Done(); true {
 			log.Println("Get cancel signal")
-			time.Sleep(3 * time.Second)
+			time.Sleep(3 * time.Second) //nolint:gomnd // it's learning code
 			log.Println("cancelled")
 		}
 	}()
@@ -60,16 +59,16 @@ func main() {
 
 	networkRequest()
 
-	time.Sleep(5 * time.Second)
+	time.Sleep(5 * time.Second) //nolint:gomnd // it's learning code
 }
 
-func addRequestID(w http.ResponseWriter, r *http.Request, next http.Handler) {
+func addRequestID(w http.ResponseWriter, r *http.Request, next http.Handler) { //nolint:unused // it's example
 	ctx := context.WithValue(r.Context(), "request-id", r.Header.Get("request-id")) //nolint:revive,staticcheck // it's learning code
 	r = r.WithContext(ctx)
 	next.ServeHTTP(w, r)
 }
 
-func useRequestID(_ http.ResponseWriter, r *http.Request, _ http.Handler) {
+func useRequestID(_ http.ResponseWriter, r *http.Request, _ http.Handler) { //nolint:unused // it's example
 	requestID := r.Context().Value("request-id")
 	log.Println("send request to other service", requestID)
 }
