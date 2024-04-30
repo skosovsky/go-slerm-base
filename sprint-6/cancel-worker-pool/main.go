@@ -16,7 +16,7 @@ func worker(ctx context.Context, id int, jobs <-chan int, results chan<- int) {
 
 		log.Printf("Worker %d finished job %d\n", id, job)
 
-		if ctx.Done(); true {
+		if <-ctx.Done(); true {
 			log.Printf("Worker %d canceled by timeout\n", id)
 			break
 		}

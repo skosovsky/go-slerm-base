@@ -1,55 +1,52 @@
 package main
 
 import (
+	"context"
 	"log"
 	"os"
 	"os/signal"
+	"sync"
 	"syscall"
+	"time"
 )
 
-func signalHandling() {
+func gracefulShutdown() {
 	sigs := make(chan os.Signal, 1)
-	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
-	done := make(chan bool, 1)
+	signal.Notify(sigs, syscall.SIGTERM)
 
-	// kill -TERM 97716
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
 	go func() {
-		sig := <-sigs
-		if sig == syscall.SIGTERM {
-			log.Println("Received SIGTERM, shutting down", sig) // in this place need close connection and cancel context
-			done <- true
+		<-sigs
+		cancel()
+	}()
+
+	var wg sync.WaitGroup
+
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		if <-ctx.Done(); true {
+			log.Println("Completing goroutine 1")
+			time.Sleep(1 * time.Second)
+			return
 		}
 	}()
 
-	log.Println("Waiting for SIGINT/SIGTERM to exit")
-	<-done
-	log.Println("Received SIGINT/SIGTERM, shutting down")
-}
-
-func signalHandlingAsNginx() {
-	sigs := make(chan os.Signal, 1)
-	signal.Notify(sigs, syscall.SIGHUP, syscall.SIGTERM)
-
-	done := make(chan bool, 1)
-
-	// kill -HUP 97943
+	wg.Add(1)
 	go func() {
-		for {
-			sig := <-sigs
-			if sig == syscall.SIGTERM {
-				close(done)
-				return
-			}
-			if sig == syscall.SIGHUP {
-				log.Println("reread config, restart goroutines")
-			}
+		defer wg.Done()
+		if <-ctx.Done(); true {
+			log.Println("Completing goroutine 2")
+			time.Sleep(1 * time.Second)
+			return
 		}
 	}()
 
-	<-done
+	wg.Wait()
 }
 
 func main() {
-	signalHandling()
-	signalHandlingAsNginx()
+	gracefulShutdown()
 }
