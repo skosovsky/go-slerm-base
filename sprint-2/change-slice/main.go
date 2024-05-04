@@ -6,11 +6,11 @@ import (
 
 func main() {
 	slc := []int{1, 2, 3}
-	slc = appendNum(slc, 4, 5, 6) //nolint:gomnd // it's learning code
+	slc = appendNum(slc, 4, 5, 6) //nolint:mnd // it's learning code
 	log.Print(slc)
 	log.Println()
 
-	slc4 := make([]int, 1, 4) //nolint:gomnd // it's learning code
+	slc4 := make([]int, 1, 4) //nolint:mnd // it's learning code
 	changeSlc(slc4)
 	log.Print(slc4)
 }

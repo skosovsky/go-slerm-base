@@ -13,9 +13,9 @@ type data struct {
 }
 
 func doGet(url string) (string, error) {
-	time.Sleep(200 * time.Millisecond) //nolint:gomnd // it's learning code
+	time.Sleep(200 * time.Millisecond) //nolint:mnd // it's learning code
 
-	failure := rand.Int()%10 > 5 //nolint:gomnd,gosec // it's learning code
+	failure := rand.Int()%10 > 5 //nolint:mnd,gosec // it's learning code
 	if failure {
 		return "", errors.New("timeout")
 	}
@@ -31,7 +31,7 @@ func future(url string) <-chan data {
 			body, err := doGet(url)
 			if err != nil {
 				log.Println("got error", err, "retrying")
-				time.Sleep(10 * time.Millisecond) //nolint:gomnd // it's learning code
+				time.Sleep(10 * time.Millisecond) //nolint:mnd // it's learning code
 				continue
 			}
 			ch <- data{Body: body, Err: err}

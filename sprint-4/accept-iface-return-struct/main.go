@@ -11,7 +11,7 @@ type BadEventEmitterIface interface {
 
 type BadEventEmitter struct{}
 
-func NewBadEventEmitter() BadEventEmitterIface { //nolint:ireturn // it's bad design
+func NewBadEventEmitter() BadEventEmitterIface { //nolint:ireturn,nolintlint // it's bad design
 	return &BadEventEmitter{}
 }
 

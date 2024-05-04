@@ -43,12 +43,12 @@ func filterOdd(num int) (int, bool) {
 }
 
 func square(num int) (int, bool) {
-	value := math.Pow(float64(num), 2) //nolint:gomnd // it's learning code
+	value := math.Pow(float64(num), 2) //nolint:mnd // it's learning code
 	return int(value), true
 }
 
 func half(num int) (int, bool) {
-	return num / 2, true //nolint:gomnd // it's learning code
+	return num / 2, true //nolint:mnd // it's learning code
 }
 
 func main() {

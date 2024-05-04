@@ -23,9 +23,9 @@ func Make(numInt LazyInt) LazyInt {
 func main() {
 	lazyInt := Make(func() int {
 		log.Println("Doing expensive calculations")
-		return 23 //nolint:gomnd // it's learning code
+		return 23 //nolint:mnd // it's learning code
 	})
 
 	log.Println(lazyInt())
-	log.Println(lazyInt() + 42) //nolint:gomnd // it's learning code
+	log.Println(lazyInt() + 42) //nolint:mnd // it's learning code
 }

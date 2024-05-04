@@ -15,7 +15,7 @@ func recoverFromPanic() {
 
 func divZero(zero int) {
 	defer recoverFromPanic()
-	log.Println(10 / zero) //nolint:gomnd // it's learning code
+	log.Println(10 / zero) //nolint:mnd // it's learning code
 }
 
 func main() {

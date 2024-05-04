@@ -60,7 +60,7 @@ func configFromEnv() {
 	v.SetDefault("SECRET", "")
 	v.SetDefault("MIDDLEWARES", []string{})
 	v.SetDefault("SERVER_ADDR", "127.0.0.1")
-	v.SetDefault("SERVER_PORT", 9090) //nolint:gomnd // it's example
+	v.SetDefault("SERVER_PORT", 9090) //nolint:mnd // it's example
 
 	v.AutomaticEnv()
 	cfg := envConfig{} //nolint:exhaustruct // it's new empty object

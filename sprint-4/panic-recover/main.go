@@ -24,8 +24,8 @@ func main() {
 	log.Println(a[i])
 
 	defer log.Println(1)
-	defer log.Println(2) //nolint:gomnd // it's learning code
-	defer log.Println(3) //nolint:gomnd // it's learning code
+	defer log.Println(2) //nolint:mnd // it's learning code
+	defer log.Println(3) //nolint:mnd // it's learning code
 
 	defer handePanic() // recovered from error stop
 	unrecoverableError()

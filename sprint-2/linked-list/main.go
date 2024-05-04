@@ -58,9 +58,9 @@ func main() {
 		head: nil,
 	}
 	list.append(1)
-	list.append(2) //nolint:gomnd // it's learning code
-	list.append(3) //nolint:gomnd // it's learning code
-	list.append(4) //nolint:gomnd // it's learning code
+	list.append(2) //nolint:mnd // it's learning code
+	list.append(3) //nolint:mnd // it's learning code
+	list.append(4) //nolint:mnd // it's learning code
 	log.Println("Original Linked List:")
 	list.print()
 

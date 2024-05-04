@@ -7,6 +7,6 @@ import (
 )
 
 func main() {
-	result := math.Add(2, 2) //nolint:gomnd // it's learning code
+	result := math.Add(2, 2) //nolint:mnd // it's learning code
 	log.Println(result)
 }

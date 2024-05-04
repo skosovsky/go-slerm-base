@@ -24,7 +24,7 @@ func (s Semaphore) Release(n int) {
 }
 
 func main() {
-	sem := NewSemaphore(3) //nolint:gomnd // it's learning code
+	sem := NewSemaphore(3) //nolint:mnd // it's learning code
 
 	for i := range 20 {
 		go func() {
@@ -35,5 +35,5 @@ func main() {
 		}()
 	}
 
-	time.Sleep(15 * time.Second) //nolint:gomnd // it's learning code
+	time.Sleep(15 * time.Second) //nolint:mnd // it's learning code
 }

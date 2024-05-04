@@ -15,11 +15,11 @@ func (d *Data) PrintValuePtr() {
 }
 
 func deferMethods() {
-	c := Data{value: 123} //nolint:gomnd // it's learning code
+	c := Data{value: 123} //nolint:mnd // it's learning code
 	defer c.PrintValue()  // 123
 	c.value = 456
 
-	c2 := Data{value: 123}   //nolint:gomnd // it's learning code
+	c2 := Data{value: 123}   //nolint:mnd // it's learning code
 	defer c2.PrintValuePtr() // 456
 	c2.value = 456
 }

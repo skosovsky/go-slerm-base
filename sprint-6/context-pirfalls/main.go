@@ -16,16 +16,16 @@ type otherParam string
 func main() {
 	// context values overriding
 	ctx := context.Background()               // root of all derived contexts
-	ctx = context.WithValue(ctx, "param", 10) //nolint:revive,gomnd,staticcheck // it's learning code
+	ctx = context.WithValue(ctx, "param", 10) //nolint:revive,mnd,staticcheck // it's learning code
 	log.Println(ctx.Value("param"))           // 10
-	ctx = context.WithValue(ctx, "param", 20) //nolint:gomnd,revive,staticcheck // it's learning code
+	ctx = context.WithValue(ctx, "param", 20) //nolint:mnd,revive,staticcheck // it's learning code
 	log.Println(ctx.Value("param"))           // 20
 
 	ctx2 := context.Background()
 	var param1 oneParam = "param"
-	ctx2 = context.WithValue(ctx2, param1, 10) //nolint:gomnd // it's learning code
+	ctx2 = context.WithValue(ctx2, param1, 10) //nolint:mnd // it's learning code
 	var param2 otherParam = "param"
-	ctx2 = context.WithValue(ctx2, param2, 20) //nolint:gomnd // it's learning code
+	ctx2 = context.WithValue(ctx2, param2, 20) //nolint:mnd // it's learning code
 	log.Println(ctx2.Value(param1))            // 10
 	log.Println(ctx2.Value(param2))            // 20
 
@@ -34,7 +34,7 @@ func main() {
 	go func() {
 		if <-ctx3.Done(); true {
 			log.Println("Get cancel signal")
-			time.Sleep(3 * time.Second) //nolint:gomnd // it's learning code
+			time.Sleep(3 * time.Second) //nolint:mnd // it's learning code
 			log.Println("cancelled")
 		}
 	}()
@@ -42,11 +42,11 @@ func main() {
 
 	// explicit better than implicit
 	ctx4 := context.Background()
-	ctx4 = context.WithValue(ctx4, "importantParam", 123) //nolint:revive,gomnd,staticcheck // it's learning code
+	ctx4 = context.WithValue(ctx4, "importantParam", 123) //nolint:revive,mnd,staticcheck // it's learning code
 	myMethodImplicit(ctx4)
 
 	// better
-	myMethodExplicit(ctx4, 123) //nolint:gomnd // it's learning code
+	myMethodExplicit(ctx4, 123) //nolint:mnd // it's learning code
 
 	// explicit context value usage
 	// addRequestID
@@ -59,7 +59,7 @@ func main() {
 
 	networkRequest()
 
-	time.Sleep(5 * time.Second) //nolint:gomnd // it's learning code
+	time.Sleep(5 * time.Second) //nolint:mnd // it's learning code
 }
 
 func addRequestID(w http.ResponseWriter, r *http.Request, next http.Handler) { //nolint:unused // it's example

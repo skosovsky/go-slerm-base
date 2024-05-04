@@ -10,7 +10,7 @@ func mapRace() {
 	var data = make(map[int]int)
 
 	var wg sync.WaitGroup
-	wg.Add(2) //nolint:gomnd // it's learning code
+	wg.Add(2) //nolint:mnd // it's learning code
 	go func() {
 		defer wg.Done()
 		for i := range 10 {
@@ -20,7 +20,7 @@ func mapRace() {
 	go func() {
 		defer wg.Done()
 		for i := range 10 {
-			data[i+100] = i + 100 //nolint:gomnd // it's learning code
+			data[i+100] = i + 100 //nolint:mnd // it's learning code
 		}
 	}()
 	wg.Wait()

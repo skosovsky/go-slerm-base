@@ -10,7 +10,7 @@ func doIt(workerID int, wg *sync.WaitGroup) {
 	defer wg.Done()
 
 	fmt.Printf("[%v] is running\n", workerID) //nolint:forbidigo // it's learning code
-	time.Sleep(3 * time.Second)               //nolint:gomnd // it's learning code
+	time.Sleep(3 * time.Second)               //nolint:mnd // it's learning code
 	fmt.Printf("[%v] is done\n", workerID)    //nolint:forbidigo // it's learning code
 }
 

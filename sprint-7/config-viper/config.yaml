@@ -1,0 +1,7 @@
+app_name: MyApp
+database:
+    host: localhost
+    password: password123
+    port: 3306
+    username: admin
+debug: true

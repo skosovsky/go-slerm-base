@@ -22,5 +22,5 @@ func itoaPlus(a int) string {
 }
 
 func appendInt(a int) string {
-	return string(strconv.AppendInt([]byte{}, int64(a), 10)) //nolint:gomnd // it's learning code
+	return string(strconv.AppendInt([]byte{}, int64(a), 10)) //nolint:mnd // it's learning code
 }

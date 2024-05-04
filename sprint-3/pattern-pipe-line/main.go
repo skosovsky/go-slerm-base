@@ -42,7 +42,7 @@ func square(in <-chan int) <-chan int {
 		defer close(out)
 
 		for i := range in {
-			value := math.Pow(float64(i), 2) //nolint:gomnd // it's learning code
+			value := math.Pow(float64(i), 2) //nolint:mnd // it's learning code
 			out <- int(value)
 		}
 	}()

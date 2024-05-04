@@ -25,7 +25,7 @@ func producer(name string, done <-chan struct{}, wg *sync.WaitGroup) <-chan payl
 			case ch <- payload{name: name, value: i}:
 				log.Println(name, "produced", i)
 				i++
-				time.Sleep(500 * time.Millisecond) //nolint:gomnd // it's learning code
+				time.Sleep(500 * time.Millisecond) //nolint:mnd // it's learning code
 			}
 		}
 	}()
@@ -56,8 +56,8 @@ func main() {
 	done := make(chan struct{})
 	wg := sync.WaitGroup{}
 
-	wg.Add(3)                                 //nolint:gomnd // it's learning code
-	producers := make([]<-chan payload, 0, 3) //nolint:gomnd // it's learning code
+	wg.Add(3)                                 //nolint:mnd // it's learning code
+	producers := make([]<-chan payload, 0, 3) //nolint:mnd // it's learning code
 	producers = append(producers, producer("Alice", done, &wg))
 	producers = append(producers, producer("Jack", done, &wg))
 	producers = append(producers, producer("Bob", done, &wg))
@@ -65,10 +65,10 @@ func main() {
 	fanIn1 := make(chan payload)
 	fanIn2 := make(chan payload)
 
-	wg.Add(3) //nolint:gomnd // it's learning code
+	wg.Add(3) //nolint:mnd // it's learning code
 	consumer("C1", producers, done, &wg, fanIn1)
 
-	wg.Add(3) //nolint:gomnd // it's learning code
+	wg.Add(3) //nolint:mnd // it's learning code
 	consumer("C2", producers, done, &wg, fanIn2)
 
 	go func() {

@@ -20,11 +20,11 @@ func main() {
 				log.Println(count)
 				return
 			default:
-				time.Sleep(3 * time.Second) //nolint:gomnd // it's learning code
+				time.Sleep(3 * time.Second) //nolint:mnd // it's learning code
 				count++
 			}
 		}
 	}(ctx)
 
-	time.Sleep(7 * time.Second) //nolint:gomnd // it's learning code
+	time.Sleep(7 * time.Second) //nolint:mnd // it's learning code
 }

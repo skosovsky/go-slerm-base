@@ -48,7 +48,7 @@ func main() {
 	fmt.Println(data) //nolint:forbidigo // Hello, Chan!
 
 	// buffered channels
-	ch1 := make(chan string, 2) //nolint:gomnd // it's learning code
+	ch1 := make(chan string, 2) //nolint:mnd // it's learning code
 	go echo("value 1", ch1)
 	go echo("value 2", ch1)
 
@@ -60,7 +60,7 @@ func main() {
 	// ch1 <- "Hello, Panic!" // send to close channel - panic // Panic: send on closed channel
 	// Best practice - Who close channel? writer only!
 
-	var chC = make(chan int, 3) //nolint:gomnd // it's learning code
+	var chC = make(chan int, 3) //nolint:mnd // it's learning code
 	chC <- 20
 	chC <- 10
 	chC <- 0
@@ -77,7 +77,7 @@ func main() {
 		// open?: false, value 0
 	}
 
-	var chC2 = make(chan int, 3) //nolint:gomnd // it's learning code
+	var chC2 = make(chan int, 3) //nolint:mnd // it's learning code
 	chC2 <- 20
 	chC2 <- 10
 	chC2 <- 0

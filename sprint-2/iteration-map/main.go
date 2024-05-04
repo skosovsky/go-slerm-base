@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	data := map[int]int{1: 1, 2: 2, 3: 3, 4: 4} //nolint:gomnd // it's learning code
+	data := map[int]int{1: 1, 2: 2, 3: 3, 4: 4} //nolint:mnd // it's learning code
 	iterationByMap(data)
 	log.Println(data)
 }

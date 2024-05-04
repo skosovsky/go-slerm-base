@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	log.Println(incrementGoroutine(1000)) //nolint:gomnd // it's example
+	log.Println(incrementGoroutine(1000)) //nolint:mnd // it's example
 }
 
 func incrementGoroutine(count int) int {

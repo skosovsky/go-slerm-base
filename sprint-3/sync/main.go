@@ -62,7 +62,7 @@ func mutexLock() {
 
 	for range 100 {
 		wg.Add(1)
-		go counter.Update(10, &wg) //nolint:gomnd // it's learning code
+		go counter.Update(10, &wg) //nolint:mnd // it's learning code
 	}
 }
 
@@ -96,7 +96,7 @@ func mutexRWLock() {
 
 	for range 100 {
 		wg.Add(1)
-		go counter.Update(10, &wg) //nolint:gomnd // it's learning code
+		go counter.Update(10, &wg) //nolint:mnd // it's learning code
 	}
 
 	wg.Wait()
@@ -107,7 +107,7 @@ func syncMap() {
 	var wg sync.WaitGroup
 	var dataMap sync.Map // dataMap not nil, but don't copy
 
-	wg.Add(10) //nolint:gomnd // it's learning code
+	wg.Add(10) //nolint:mnd // it's learning code
 
 	for i := 1; i <= 5; i++ {
 		go func(key int) {

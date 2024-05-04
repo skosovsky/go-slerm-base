@@ -43,7 +43,7 @@ func loggingExamples() {
 	// Entry returned from WithFields() creates copy of struct internally
 	contextLogger := logrus.WithFields(logrus.Fields{
 		"param":   "value",
-		"userID":  12345, //nolint:gomnd // it's example
+		"userID":  12345, //nolint:mnd // it's example
 		"traceID": uuid.New().String(),
 	})
 

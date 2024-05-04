@@ -62,12 +62,12 @@ func main() {
 		arr: [10]*Node{},
 	}
 
-	hashTable.insert(10, 1) //nolint:gomnd // it's learning code
-	hashTable.insert(20, 2) //nolint:gomnd // it's learning code
-	hashTable.insert(30, 3) //nolint:gomnd // it's learning code
-	hashTable.insert(11, 4) //nolint:gomnd // it's learning code
+	hashTable.insert(10, 1) //nolint:mnd // it's learning code
+	hashTable.insert(20, 2) //nolint:mnd // it's learning code
+	hashTable.insert(30, 3) //nolint:mnd // it's learning code
+	hashTable.insert(11, 4) //nolint:mnd // it's learning code
 
-	val, ok := hashTable.get(10) //nolint:gomnd // it's learning code
+	val, ok := hashTable.get(10) //nolint:mnd // it's learning code
 	if !ok {
 		log.Println("Value not found")
 	}

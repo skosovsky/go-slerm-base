@@ -10,12 +10,12 @@ func selectForChan() {
 	two := make(chan string)
 
 	go func() {
-		time.Sleep(100 * time.Millisecond) //nolint:gomnd // it's learning code
+		time.Sleep(100 * time.Millisecond) //nolint:mnd // it's learning code
 		one <- "One"
 	}()
 
 	go func() {
-		time.Sleep(200 * time.Millisecond) //nolint:gomnd // it's learning code
+		time.Sleep(200 * time.Millisecond) //nolint:mnd // it's learning code
 		two <- "Two"
 	}()
 
@@ -37,12 +37,12 @@ func selectForChanDefault() {
 	two := make(chan string)
 
 	go func() {
-		time.Sleep(100 * time.Millisecond) //nolint:gomnd // it's learning code
+		time.Sleep(100 * time.Millisecond) //nolint:mnd // it's learning code
 		one <- "One"
 	}()
 
 	go func() {
-		time.Sleep(200 * time.Millisecond) //nolint:gomnd // it's learning code
+		time.Sleep(200 * time.Millisecond) //nolint:mnd // it's learning code
 		two <- "Two"
 	}()
 	time.Sleep(1 * time.Second)

@@ -7,8 +7,8 @@ import (
 )
 
 func main() {
-	result := math.AddWithError(2, 2)   //nolint:gomnd // it's learning code
+	result := math.AddWithError(2, 2)   //nolint:mnd // it's learning code
 	log.Println(result)                 // 4
-	result = math.AddWithError(100, 10) //nolint:gomnd // it's learning code
+	result = math.AddWithError(100, 10) //nolint:mnd // it's learning code
 	log.Println(result)                 // 0
 }

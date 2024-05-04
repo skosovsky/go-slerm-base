@@ -11,7 +11,7 @@ import (
 
 func process(id int) {
 	log.Printf("[%s]: running task %d\n", time.Now().Format("15:04:05"), id)
-	time.Sleep(100 * time.Millisecond) //nolint:gomnd // it's learning code
+	time.Sleep(100 * time.Millisecond) //nolint:mnd // it's learning code
 }
 
 func main() {

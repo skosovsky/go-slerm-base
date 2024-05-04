@@ -83,5 +83,5 @@ func main() {
 	ctx, cancel := context.WithTimeout(ctx, timeout)
 	defer cancel()
 
-	log.Println(doManyRequest(ctx, 5)) //nolint:gomnd //it's example
+	log.Println(doManyRequest(ctx, 5)) //nolint:mnd //it's example
 }

@@ -13,7 +13,7 @@ func process(payload int, queue chan struct{}, wg *sync.WaitGroup) {
 		defer wg.Done()
 
 		log.Printf("Start processing of %d\n", payload)
-		time.Sleep(500 * time.Millisecond) //nolint:gomnd // it's learning code
+		time.Sleep(500 * time.Millisecond) //nolint:mnd // it's learning code
 		log.Printf("Completed processing of %d\n", payload)
 
 		<-queue

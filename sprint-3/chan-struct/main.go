@@ -11,7 +11,7 @@ func small() {
 		value int
 	}
 
-	ch := make(chan smallStruct, 10000000*2) //nolint:gomnd // it's learning code
+	ch := make(chan smallStruct, 10000000*2) //nolint:mnd // it's learning code
 	var wg sync.WaitGroup
 	var duration time.Duration
 	var startTime time.Time
@@ -21,7 +21,7 @@ func small() {
 	go func() {
 		defer wg.Done()
 		for range 10000000 {
-			ch <- smallStruct{value: 1000} //nolint:gomnd // it's learning code
+			ch <- smallStruct{value: 1000} //nolint:mnd // it's learning code
 			ch <- smallStruct{value: -1000}
 		}
 		close(ch)
@@ -47,7 +47,7 @@ func big() {
 		value int
 	}
 
-	ch := make(chan bigStruct, 10000000*2) //nolint:gomnd // it's learning code
+	ch := make(chan bigStruct, 10000000*2) //nolint:mnd // it's learning code
 	var wg sync.WaitGroup
 	var duration time.Duration
 	var startTime time.Time
@@ -57,8 +57,8 @@ func big() {
 	go func() {
 		defer wg.Done()
 		for range 10000000 {
-			ch <- bigStruct{name: "Sfdfsdfsdfsdf", email: "sg@mail.ru", age: 54, value: 1000}  //nolint:gomnd // it's learning code
-			ch <- bigStruct{name: "Sfsdfsdfsfsdf", email: "sg@mail.ru", age: 54, value: -1000} //nolint:gomnd // it's learning code
+			ch <- bigStruct{name: "Sfdfsdfsdfsdf", email: "sg@mail.ru", age: 54, value: 1000}  //nolint:mnd // it's learning code
+			ch <- bigStruct{name: "Sfsdfsdfsfsdf", email: "sg@mail.ru", age: 54, value: -1000} //nolint:mnd // it's learning code
 		}
 		close(ch)
 	}()

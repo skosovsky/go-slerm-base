@@ -5,8 +5,8 @@ import (
 )
 
 func main() {
-	log.Println(factorialRecursive(10)) //nolint:gomnd // it's learning code
-	log.Println(factorialFor(10))       //nolint:gomnd // it's learning code
+	log.Println(factorialRecursive(10)) //nolint:mnd // it's learning code
+	log.Println(factorialFor(10))       //nolint:mnd // it's learning code
 
 	limitRecursive()
 }

@@ -15,5 +15,5 @@ func factorial(num int) int {
 }
 
 func main() {
-	log.Println(factorial(10)) //nolint:gomnd // it's learning code
+	log.Println(factorial(10)) //nolint:mnd // it's learning code
 }

@@ -44,7 +44,7 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	}
 
 	select {
-	case <-time.After(5 * time.Second): //nolint:gomnd // it's learning code
+	case <-time.After(5 * time.Second): //nolint:mnd // it's learning code
 		_, _ = fmt.Fprint(w, "Response from the server")
 
 	// Handling request cancellation
