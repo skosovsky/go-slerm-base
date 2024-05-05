@@ -9,7 +9,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func init() { //nolint:gochecknoinits // it's learning code
+func loggerInit() {
 	// Log as JSON instead of the default ASCII formatter.
 	logrus.SetFormatter(&logrus.JSONFormatter{}) //nolint:exhaustruct // it's good
 
@@ -22,6 +22,8 @@ func init() { //nolint:gochecknoinits // it's learning code
 }
 
 func loggingExamples() {
+	loggerInit()
+
 	log.Println("test") // 2024/04/26 06:40:32 test
 
 	slog.Info("test", "param", "value") // 2024/04/26 06:41:34 INFO test param=value
